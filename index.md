@@ -6,16 +6,7 @@ title: Open EDI
 
 Open EDI - Network-neutral Data Interchange
 
-#
-
-**DISA Address**
-
->     Data Interchange Standards Association, Inc.
->     1800 Diagonal Road, Suite 200
->     Alexandria, VA 22314-2852
->     (703) 548-7005
-
-# ASC X12 Standards
+## ASC X12 Standards
 
 The ASC X12 Electronic Document Interchange (EDI) standards are
 published by the Data Interchange Standards Association, Inc.
