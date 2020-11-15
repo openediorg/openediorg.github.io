@@ -2,9 +2,10 @@
 title: Documentation
 redirect_from: /documentation.html
 ---
+
 ## X12 Generic Envelope
 
-## Overview 
+## Overview
 
 `public static X12ParserException handleUnexpectedSegment(String expectedSegmentId, String actualSegmentId)`
 
@@ -12,32 +13,32 @@ builds an {@link X12ParserException} w/ consistent message when an unexpected se
 
 the caller of the method must throw this exception if that is what is desired
 
- * **Parameters:**
-   * `expectedSegmentId` — 
-   * `actualSegmentId` — 
- * **Returns:** the X12ParserException
+- **Parameters:**
+  - `expectedSegmentId` —
+  - `actualSegmentId` —
+- **Returns:** the X12ParserException
 
 #### `public static boolean isValidEnvelope(List<X12Segment> segmentList, String headerIdentifier, String trailerIdentifier)`
 
 given a set of segment lines it will examine the first and last segments and evaluate whether they match the header and trailer values passed into the method
 
- * **Returns:** true if envelope matches otherwise false
+- **Returns:** true if envelope matches otherwise false
 
 #### `public static boolean verifyTransactionSetType(List<X12Segment> segmentList, String transactionType)`
 
 The segment list should wrapped in valid transaction envelope (ST/SE) with the transaction type (ST01) matching the provided type
 
- * **Parameters:**
-   * `segmentList` — 
-   * `transactionType` — 
- * **Returns:** true if type matches otherwise false
+- **Parameters:**
+  - `segmentList` —
+  - `transactionType` —
+- **Returns:** true if type matches otherwise false
 
 #### `public static Integer parseVersion(String versionValue)`
 
 return the numeric part of a version number
 
- * **Parameters:** `versionValue` — 
- * **Returns:** 
+- **Parameters:** `versionValue` —
+- **Returns:**
 
 #### `public static List<X12Loop> findHierarchicalLoops(List<X12Segment> segmentList)`
 
@@ -45,42 +46,42 @@ generic method that takes a given a set of segment lines and it will break them 
 
 this method will only work when the first segment is an HL and when this set of segments has already been extracted from the ST/SE and the parts of the header and trailer of the transaction set
 
- * **Returns:** list of {@link X12Loop} or empty list if there is a problem
+- **Returns:** list of {@link X12Loop} or empty list if there is a problem
 
-     <p>
- * **Exceptions:** `X12ParserException` — if the first segment is not an HL or if the parent
+    <p>
 
-     that an HL loop has is not found
+- **Exceptions:** `X12ParserException` — if the first segment is not an HL or if the parent
+
+  that an HL loop has is not found
 
 #### `private static List<X12Loop> processLoops(List<X12Segment> segmentList)`
 
 handle the loops and build nested structure as defined by the segment lines
 
- * **Parameters:** `segmentList` — 
- * **Returns:** list of loops
+- **Parameters:** `segmentList` —
+- **Returns:** list of loops
 
-     <p>
- * **Exceptions:** `an` — {@link X12ParserException} if id is reused an HL segment
+    <p>
+
+- **Exceptions:** `an` — {@link X12ParserException} if id is reused an HL segment
 
 #### `private static boolean isHierarchalLoopStart(X12Segment segment)`
 
 check the segment for the start of HL
 
- * **Parameters:** `segment` — 
- * **Returns:** true if HL otherwise false
+- **Parameters:** `segment` —
+- **Returns:** true if HL otherwise false
 
 #### `private static void handleParentLoop(X12Loop loop, Map<String, X12Loop> loopMap)`
 
 given a loop, look for the parent loop
 
- * **Parameters:**
-   * `loop` — 
-   * `loopMap` — <p>
- * **Exceptions:** `X12ParserException` — if the parent loop is missing
+- **Parameters:**
+  - `loop` —
+  - `loopMap` — <p>
+- **Exceptions:** `X12ParserException` — if the parent loop is missing
 
-
- ## X12 TransactionSet
-
+## X12 TransactionSet
 
 #### `public interface X12TransactionSet`
 
@@ -92,27 +93,27 @@ The ST01 segment element contains the functional group code, which identifies th
 
 common X12 transaction types associated with retail are 856 (ASN), 850 (PO), and 812 (invoice).
 
- * **Returns:** the ST01 segment value
+- **Returns:** the ST01 segment value
 
 #### `String getHeaderControlNumber()`
 
 The ST02 segment element contains the control number. This should match the control number on the corresponding transaction trailer segment.
 
- * **Returns:** the ST02 segment value
+- **Returns:** the ST02 segment value
 
 #### `Integer getExpectedNumberOfSegments()`
 
 The SE01 segment element contains the number of segments that are in this transaction.
 
- * **Returns:** the SE01 segment value
+- **Returns:** the SE01 segment value
 
 #### `String getTrailerControlNumber()`
 
 The SE02 segment element contains the control number. This should match the control number on the corresponding transaction header segment.
 
- * **Returns:** the SE02 segment value
+- **Returns:** the SE02 segment value
 
- ## X12 Segment
+## X12 Segment
 
 > Defines the X12 Segment Class
 
@@ -126,16 +127,16 @@ This class will parse a segment into the individual elements
 
 create the {@link X12Segment} using the default delimiter
 
- * **Parameters:** `segment` — 
- * **Returns:** {@link X12Segment}
+- **Parameters:** `segment` —
+- **Returns:** {@link X12Segment}
 
 #### `public X12Segment(String segment, Character dataElementDelimiter)`
 
 create the {@link X12Segment} using the delimiter provided
 
- * **Parameters:** `segment` — 
- * **Returns:** {@link X12Segment}
- * **Exceptions:** `PatternSyntaxException` — if the delimiter results in invalid regular expression
+- **Parameters:** `segment` —
+- **Returns:** {@link X12Segment}
+- **Exceptions:** `PatternSyntaxException` — if the delimiter results in invalid regular expression
 
 #### `@Override public String toString()`
 
@@ -151,4 +152,4 @@ retrieve the element at a particular index in the segment
 
 #### `private List<String> splitSegmentIntoDataElements(String segment, Character dataElementDelimiter)`
 
-parses the segment into a list of data elements each date element is separated by an asterisk (*)
+parses the segment into a list of data elements each date element is separated by an asterisk (\*)
