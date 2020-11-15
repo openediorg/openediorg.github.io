@@ -1,0 +1,5 @@
+*.html   text diff=html
+*.png diff=exif
+*.svg diff=exif
+.gitattributes text
+KEY      text
