@@ -1,0 +1,17 @@
+baseurl: ""
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+exclude:
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+gems:
+  - jekyll-redirect-from
+permalink: pretty
+title: "Open EDI"
+url: "https://openediorg.github.io"
